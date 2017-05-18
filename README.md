@@ -8,3 +8,13 @@ Make sure to get the right python3 wrapper and download MeCab and its python wra
 - http://takegue.hatenablog.com/entry/2015/01/25/045341
 - http://qiita.com/Salinger/items/529a77f2ceeb39998665
 - http://www.atilika.org/
+
+## Python Dependencies:
+- requests
+- tweepy
+- oauth2
+- beautifulsoup4
+- pymongo
+- scrapy
+
+捗る→
