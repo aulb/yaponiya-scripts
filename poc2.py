@@ -1,8 +1,8 @@
 #!/usr/bin/env python                                                                                                                                             
 # -*- coding:utf-8 -*-      
-
 import requests
 import re
+import json
 from bs4 import BeautifulSoup
 
 BASE_URI = "http://www3.nhk.or.jp/news/"
@@ -33,13 +33,16 @@ TEST_URI = "http://www3.nhk.or.jp/news/easy/k10014977351000/k10014977351000.html
 
 """
 def main():
-	
+	news_url = make_article_url(news_article["news_id"])
+	request = requests.get(news_url)
+
 	# request = requests.get(TEST_URI)
 	# request.encoding = "utf-8"
 
 	# html = request.text.replace("<rt>", ":").replace("</rt>", "").replace("<ruby>", "(").replace("</ruby>", ")")
 	# html = re.sub('\\n|\\t|\\r', "", html)
 	pass
+
 
 """
 Return url.
@@ -50,7 +53,8 @@ def make_article_url(news_id):
 """
 Get raw.
 """
-def scrape_article(url):
+def scrape_article(news_url):
+
 	return
 
 """
@@ -72,20 +76,29 @@ def get_article_raw(preprocessed_string):
 
 
 if __name__ == '__main__':
-"""
-- GET request to NEWS_LIST, this gets you a monthly list as a JSON string.
-- Processed the JSON string into a python dictionary.
-- For each dictionary key which is the date_string, get the news list for each day.
-- For each daily news, get the news_id, title, title with ruby
-- For each news article:
-	- title 			: Japanese title without reading
-	- title_with_ruby 	: Japanese title with reading
-	- news_id 			: Where the article is located
-"""
-	request = requests.get(BASE_URI + ENDPOINT["NEWS_LIST"])
-	if request.status == 200:
-		# request.content is the JSON string
-		news_dict = json.loads() 
+	"""
+	- GET request to NEWS_LIST, this gets you a monthly list as a JSON string.
+	- Processed the JSON string into a python dictionary.
+	- For each dictionary key which is the date_string, get the news list for each day.
+	- For each daily news, get the news_id, title, title with ruby
+	- For each news article:
+		- GET request to the article's location
+		- Parse the article, get the following:
+			- Article's raw text
+			- Kanji list with reading
+		* title 			: Japanese title without reading
+		* title_with_ruby 	: Japanese title with reading
+		* news_id 			: Where the article is located
+		* news_web_url		: Where the non-easy version is located
 
+	"""	
+	request = requests.get(BASE_URI + ENDPOINT["NEWS_LIST"])
+	if request.status_code == 200:
+		# request.content is the JSON string
+		news_dict = json.loads(request.content)[0]
+		for date_string in news_dict:
+			current_news_list = news_dict[date_string]
+			for news_article in current_news_list:
+				print(news_article["title_with_ruby"], news_article["news_id"])
 
 	
