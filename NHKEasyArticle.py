@@ -1,3 +1,4 @@
+import collections
 import requests
 import time
 import re
@@ -22,11 +23,9 @@ Return article's raw text without kanji's reading.
 def get_article_raw(preprocessed_string):
 	return re.sub(PATTERN, r'\1', preprocessed_string)                                                                                                                 
 
-class NHKEasyArticle(object):
-	"""NHK Easy News extractor.
-	
-	Extracts all needed information from an NHK Easy News article.
-	"""
-	def __init__(self):
-		pass
-		
+
+"""NHK Easy News extractor.
+
+Extracts all needed information from an NHK Easy News article.
+"""
+NHKEasyNews = collections.namedtuple('NHKEasyNews', 'title title1 title2')
