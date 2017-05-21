@@ -28,4 +28,4 @@ def get_article_raw(preprocessed_string):
 
 Extracts all needed information from an NHK Easy News article.
 """
-NHKEasyNews = collections.namedtuple('NHKEasyNews', 'title title1 title2')
+NHKEasyNews = collections.namedtuple('NHKEasyNews', 'title vocab_list news_with_title')
