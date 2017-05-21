@@ -75,6 +75,59 @@ Return article's raw text without kanji's reading.
 def get_article_raw(preprocessed_string):
 	return re.sub(PATTERN, r'\1', preprocessed_string)
 
+"""
+Return a nested dictionary representing all of the articles bigrams in the
+article and their counts.abs
+
+bigram_dict ={
+	'hello': {
+		'hi': 1
+	}
+}
+"""
+def get_article_bigrams(preprocessed_string):
+	# Match every word in the article
+	article_matches = re.findall(PATTERN, preprocessed_string)
+	bigram_dict = {}
+	last_index = len(article_matches)
+
+	for word, index in enumerate(article_matches):
+		# Can't get bigram on last word
+		if index == len(article_matches) + 1:
+			break
+		
+		if word not in bigram_dict:
+			bigram_dict[word] = {}
+
+		next_word = article_matches[index + 1]
+
+		if next_word not in bigram_dict[word]:
+			bigram_dict[word][next_word] = 0
+		
+		bigram_dict[word][next_word] += 1
+	
+	return bigram_dict
+
+"""
+Return a nested dictionary representing all of the articles bigrams in the
+article and their counts.abs
+
+unigram_dict ={
+	hi': 1,
+}
+"""
+def get_article_unigrams(preprocessed_string):
+	# Match every word in the article
+	article_matches = re.findall(PATTERN, preprocessed_string)
+	unigram_dict = {}
+	
+	for word in article_matches:
+		if word not in unigram_dict:
+			unigram_dict[word] = 0
+		
+		unigram_dict[word] += 1
+	
+	return unigram_dict
 
 if __name__ == '__main__':
 	"""
