@@ -65,7 +65,8 @@ def get_article_vocab(preprocessed_string):
 	matches = re.findall(PATTERN, preprocessed_string)
 	vocab_dict = {}
 	for word, reading in matches:
-		vocab_dict[word] = reading
+		if word not in vocab_dict:
+			vocab_dict[word] = reading
 	return vocab_dict
 
 """
