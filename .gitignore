@@ -2,3 +2,8 @@ yenv
 .DS_Store
 extra*
 .vscode
+*.sqlite
+twitter.json
+jouyou.txt
+kanji.json
+NHKEasy/*

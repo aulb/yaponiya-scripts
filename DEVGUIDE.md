@@ -18,6 +18,19 @@ Make sure to get the right python3 wrapper and download MeCab and its python wra
 - oauth2
 - beautifulsoup4
 - pymongo
-- scrapy
+- praw
+- scrapy (not needed)
 
 捗る→
+
+# NHKArticle
+id,news_id,title,article,news_url
+
+# NHKEasyDictionary
+id,news_id,word,meaning
+
+# NHKMostCommonReading
+id,word,reading
+
+# NHKEasyCounter
+id,kanji,counter
