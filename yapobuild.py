@@ -2,7 +2,7 @@
 import sqlite3
 import os
 
-connection = sqlite3.connect("temporary.sqlite")
+connection = sqlite3.connect("yapo.sqlite")
 cursor = connection.cursor()
 
 NHKEasyArticle = """

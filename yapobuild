@@ -1,0 +1,3 @@
+#!/bin/bash
+rm yapo.sqlite
+python3 yapobuild.py

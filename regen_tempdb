@@ -1,4 +1,0 @@
-#!/bin/bash
-
-rm temporary.sqlite
-python3 build.py
