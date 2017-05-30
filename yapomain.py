@@ -8,11 +8,17 @@ from multiprocessing.pool import ThreadPool
 from yapohelper import *
 
 connection = sqlite3.connect("yapo.sqlite")
+# Each thread gets its own cursor
 cursor = connection.cursor()
 
+connection.commit()
+connection.close()
 
 """
 First parallelization to check existence
+For each one, do a select statement to see if id exist, 
+if yes, return []
+if no, return [news_id, news_date, news_title]
 """
 def check_if_news_exist_if_yes_return_article_id():
     """
@@ -21,8 +27,25 @@ def check_if_news_exist_if_yes_return_article_id():
     pass
 
 
+
 """
 Second parallelization to get statements
+For each valid article, 
+	- create insert statement, return
+	
+	pool.map(execute_insert_article, insert_statements)
+	MAP (news_id, insert_statements) => (news_id, row_id)
+	get reikai urls
+	MAP (reikai_urls, row_id) => insert_statements
+	pool.map(execute_insert_reikai) => None
+
+	out of order no problemo
+
+	- insert new article to database / create insert statement
+	- https://stackoverflow.com/questions/6242756/how-to-retrieve-inserted-id-after-inserting-row-in-sqlite-using-python
+	- get article_id in return 
+	- reikai below...
+	- supply all the readings + words too
 """
 def if_news_exist_go_to_url():
     """
@@ -30,6 +53,9 @@ def if_news_exist_go_to_url():
     """
     pass
 
+
+def get_reikai_statements(reikai_url, artcile_id):
+	pass
 
 # with open("data/url_list.csv", "r") as url_list:
 #     urls = csv.reader(url_list, delimiter=",")
@@ -101,5 +127,3 @@ def if_news_exist_go_to_url():
 #         counter += 1
 #         connection.commit()
 
-connection.commit()
-connection.close()
