@@ -1,5 +1,10 @@
+# Python environment
 yenv
+
+# Mac stuff
 .DS_Store
+
+# Extra
 extra*
 .vscode
 *.sqlite
@@ -7,3 +12,5 @@ twitter.json
 jouyou.txt
 kanji.json
 NHKEasy/*
+__pycache__
+yaposave*
