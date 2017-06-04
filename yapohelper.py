@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import re
 import json
-import collections
+import requests
 from bs4 import BeautifulSoup
 
 from yapostatements import *
@@ -141,4 +141,3 @@ def get_monthly_news_data():
                     "title" : news_title
                 })
     return news_data
-    
