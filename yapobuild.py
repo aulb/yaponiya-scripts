@@ -34,11 +34,13 @@ KanjiList = """
 CREATE TABLE kanji
     (kanji_id        INTEGER PRIMARY KEY AUTOINCREMENT,
      kanji           VARCHAR(16) NOT NULL,
-     onyomi          VARCHAR(32) NOT NULL,
-     kunyomi         VARCHAR(64) NOT NULL,
+     is_joyo         INTEGER NOT NULL,
+     is_jinmeiyo     INTEGER,
+     onyomi          VARCHAR(32),
+     kunyomi         VARCHAR(64),
      jlpt            INTEGER,
      grade           INTEGER,
-     english_meaning TEXT)
+     meaning         TEXT)
 """
 
 NHKEasyCounter = """
