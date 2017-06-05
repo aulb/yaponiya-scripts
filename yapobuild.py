@@ -19,7 +19,7 @@ CREATE TABLE nhk_dictionary
     (dictionary_id INTEGER PRIMARY KEY AUTOINCREMENT,
      article_id    INTEGER NOT NULL,
      word          VARCHAR(32) NOT NULL,
-     meaning       TEXT NOT NULL)
+     meaning       TEXT NOT NULL,
      FOREIGN KEY(article_id) REFERENCES nhk_article(article_id))
 """
 
