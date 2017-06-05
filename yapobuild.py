@@ -33,7 +33,7 @@ CREATE TABLE nhk_common_reading
 KanjiList = """
 CREATE TABLE kanji
     (kanji_id        INTEGER PRIMARY KEY AUTOINCREMENT,
-     kanji           VARCHAR(16) NOT NULL,
+     character       VARCHAR(16) NOT NULL,
      is_joyo         INTEGER NOT NULL,
      is_jinmeiyo     INTEGER,
      onyomi          VARCHAR(32),

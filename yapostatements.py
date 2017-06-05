@@ -25,3 +25,12 @@ SELECT article_id
 FROM nhk_article
 WHERE news_id = '{news_id}'
 """
+
+RESULT = """
+SELECT *
+FROM
+(SELECT SUM(nk.counter) c, k.character, k.kanji_id, is_joyo
+FROM nhk_kanji nk JOIN kanji k ON k.kanji_id = nk.kanji_id
+GROUP BY k.kanji_id) t
+ORDER BY t.c DESC
+"""
