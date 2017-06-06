@@ -34,3 +34,8 @@ FROM nhk_kanji nk JOIN kanji k ON k.kanji_id = nk.kanji_id
 GROUP BY k.kanji_id) t
 ORDER BY t.c DESC
 """
+
+"""
+# Coordinates for most of Japan
+japan = "129.484177, 30.923179, 145.985641, 45.799878"
+"""
