@@ -1,13 +1,21 @@
-#!/usr/bin/env python                                                                                                                                             
-# -*- coding:utf-8 -*-                                                                                                                                            
+"""
+THIS CODE IS NO LONGER IN USE.
+THIS CODE IS NO LONGER IN USE.
+THIS CODE IS NO LONGER IN USE.
+THIS CODE IS NO LONGER IN USE.
+THIS CODE IS NO LONGER IN USE.
+"""
+
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
 
 import MeCab
 
-### Constants                                                                                                                                                     
+### Constants
 MECAB_MODE = 'mecabrc'
 PARSE_TEXT_ENCODING = 'utf-8'
 
-### Functions                                                                                                                                                     
+### Functions
 def main():
     sample_u = u"ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。馬鹿げてることは知ってるよ。でも、ほんとうになりたいものといったらそれしかないね。"
     words_dict = parse(sample_u)
@@ -43,7 +51,7 @@ def parse(unicode_string):
         words.append(word)
         node = node.next
     parsed_words_dict = {
-        "all": words[1:-1], # 最初と最後には空文字列が入るので除去                                                                                                
+        "all": words[1:-1], # 最初と最後には空文字列が入るので除去
         "nouns": nouns,
         "verbs": verbs,
         "parts": parts,
@@ -51,7 +59,7 @@ def parse(unicode_string):
         }
     return parsed_words_dict
 
-### Execute                                                                                                                                                       
+### Execute
 if __name__ == "__main__":
     unicode_string = "ライ麦畑のつかまえ役、そういったものに僕はなりたいんだよ。馬鹿げてることは知ってるよ。でも、ほんとうになりたいものといったらそれしかないね。"
     b = parse(unicode_string)
