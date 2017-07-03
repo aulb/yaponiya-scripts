@@ -5,13 +5,7 @@ yenv
 .DS_Store
 
 # Extra
-extra*
-.vscode
-*.sqlite
-twitter.json
+_noise/*
+script*
 __pycache__
-yaposave*
-*copy
-kanji.py
-_noise
-script
+*.sqlite

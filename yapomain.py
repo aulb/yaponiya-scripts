@@ -1,5 +1,8 @@
-#!/usr/bin/env python                                                                                                                                      
-# -*- coding:utf-8 -*-         
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+"""
+Fetch new NHK Articles.
+"""
 import sqlite3
 import csv
 import time
@@ -31,7 +34,7 @@ def check_existence(data):
     return False
 
 def store_to_db(data):
-    # TODO: Needs refactoring 
+    # TODO: Needs refactoring
     # TODO: Async cursor
     reading_dictionary = {}
 
@@ -52,13 +55,13 @@ def store_to_db(data):
     # Set encoding to utf-8 to
     news_request.encoding = BASE_ENCODING
 
-    # Preprocess HTML 
+    # Preprocess HTML
     news_html = preprocess_html(news_request.text)
 
     # Use BeautifulSoup to find the article's main div
     news_parser = BeautifulSoup(news_html, "html.parser")
     news_parser = news_parser.find(id=MAIN_DIV_WRAPPER)
-    
+
     # Get article's raw text
     get_article_vocab(news_parser.text, reading_dictionary)
 
@@ -79,7 +82,7 @@ def store_to_db(data):
         for entry_key in dictionary_entry:
             current_entry = dictionary_entry[entry_key]
             for definition_object in current_entry:
-                word_definition = definition_object["def"] 
+                word_definition = definition_object["def"]
                 word_token = definition_object["hyouki"][0]
 
                 word_definition = preprocess_html(word_definition)
@@ -102,12 +105,12 @@ def store_to_db(data):
     close_connection(connection, commit=True)
     return
 
-monthly_data = get_monthly_news_data()
-# Check which data does not exist
-pool = ThreadPool(15)
-new_data = pool_filter(pool, check_existence, monthly_data)
+if __name__ == '__main__':    
+    monthly_data = get_monthly_news_data()
+    # Check which data does not exist
+    pool = ThreadPool(15)
+    new_data = pool_filter(pool, check_existence, monthly_data)
 
-# Store to db sequentially
-for data in new_data:
-    store_to_db(data)
-
+    # Store to db sequentially
+    for data in new_data:
+        store_to_db(data)
